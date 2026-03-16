@@ -38,7 +38,11 @@ const HomePage = () => {
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
             {notes.map((note) => (
               <NoteCard key={note._id} note={note} />
+
+
+
             ))}
+            <h1>ehsan</h1>
           </div>
         )}
       </div>
