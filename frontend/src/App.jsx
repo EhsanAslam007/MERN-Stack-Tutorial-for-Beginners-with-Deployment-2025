@@ -22,6 +22,9 @@ const App = () => {
                 {/* eshan  */}
                         {/* eshan  */}
                         
+         {/* kazim */}
+         {/* kazim */}
+          {/* kazim */}
       </Routes>
       
     </div>
