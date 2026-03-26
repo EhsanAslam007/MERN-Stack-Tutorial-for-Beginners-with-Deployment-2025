@@ -14,7 +14,10 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/create" element={<CreatePage />} />
         <Route path="/note/:id" element={<NoteDetailPage />} />
+
+        {/* kazim */}
       </Routes>
+      
     </div>
   )
 }
