@@ -16,6 +16,12 @@ const App = () => {
         <Route path="/note/:id" element={<NoteDetailPage />} />
 
         {/* kazim */}
+
+
+        {/* eshan  */}
+                {/* eshan  */}
+                        {/* eshan  */}
+                        
       </Routes>
       
     </div>
