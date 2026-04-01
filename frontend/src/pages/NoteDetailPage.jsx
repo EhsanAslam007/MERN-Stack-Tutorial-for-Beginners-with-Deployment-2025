@@ -25,7 +25,36 @@ const NoteDetailPage = () => {
     };
     fetchNotes();
   }, [id]);
-  const handleDelete = () => { };
+  console.log("Frontend ID:", id);
+console.log("Note object:", note);
+  const handleDelete = async () => {
+    if (!window.confirm("Are you sure you want to delete this note!")) return;
+    try {
+      await api.delete(`/notes/${id}`);
+      toast.success("Note Deleted Succeccfully!")
+      navigate("/");
+    } catch (error) {
+      console.log("Error in deleting Note", error);
+      toast.error("Failed to delete Note!");
+    }
+  };
+  const handleSave = async () => {
+    if(!note.title.trim() || !note.content.trim()){
+      toast.error("Please add Title and Content.");
+      return;
+    }
+    setLoading(true)
+    try {
+      await api.put(`/notes/${id}`, note);
+      toast.success("Note Updated Successfully");
+      navigate("/");
+    } catch (error) {
+      console.log("Error in saving note...");
+      toast.error("Failed to update note!!")
+    } finally{
+      setSaving(false)
+    }
+   };
 
   if (loading) {
     return (
@@ -52,30 +81,32 @@ const NoteDetailPage = () => {
             <div className="card-body">
               <div className='form-control mb-4'>
                 <label className='label'>
-                 <span className='label-span'>Title</span>
+                  <span className='label-span'>Title</span>
                 </label>
                 <input
-                type='text'
-                placeholder='Note Title'
-                className='input input-bordered'
-                value={note.title}
-                onChange={(e) => setNote({...note, title:e.target.value})}
+                  type='text'
+                  placeholder='Note Title'
+                  className='input input-bordered'
+                  value={note.title}
+                  onChange={(e) => setNote({ ...note, title: e.target.value })}
                 />
               </div>
 
               <div className='form-control mb-4'>
                 <label className='label'>
-                 <span className='label-span'>Content</span>
+                  <span className='label-span'>Content</span>
                 </label>
                 <textarea
-                placeholder='Write your Note here...'
-                className='textarea textarea-bordered h-32'
-                value={note.content}
-                onChange={(e) => setNote({...note, content:e.target.value})}
+                  placeholder='Write your Note here...'
+                  className='textarea textarea-bordered h-32'
+                  value={note.content}
+                  onChange={(e) => setNote({ ...note, content: e.target.value })}
                 />
               </div>
               <div className="card-actions justify-end">
-              <button className='btn btn-primary' disabled={saving}></button>
+                <button className='btn btn-primary' disabled={saving} onClick={handleSave}>
+                  {saving ? "Saving...." : "Save Changes"}
+                </button>
               </div>
             </div>
           </div>

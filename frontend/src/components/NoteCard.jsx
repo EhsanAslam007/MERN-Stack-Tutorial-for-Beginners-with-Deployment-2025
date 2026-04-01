@@ -3,6 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { formatDate } from '../lib/utils'
 import toast from 'react-hot-toast';
+import api from '../lib/axios';
 
 const NoteCard = ({ note }) => {
     const handleDelete = async (e, id) => {
